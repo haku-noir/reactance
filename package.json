@@ -1,0 +1,19 @@
+{
+  "name": "reactance",
+  "version": "0.0.0",
+  "description": "A CLI for React &amp; Redux to simplify the creation of components, reducers and app templates",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haku-noir/reactance.git"
+  },
+  "author": "Riku Hatano <hakunoir.00@gmail.com> (https://qiita.com/haku-noir)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/haku-noir/reactance/issues"
+  },
+  "homepage": "https://github.com/haku-noir/reactance#readme"
+}
