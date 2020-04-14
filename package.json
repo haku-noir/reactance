@@ -2,7 +2,7 @@
   "name": "reactance",
   "version": "0.0.0",
   "description": "A CLI for React &amp; Redux to simplify the creation of components, reducers and app templates",
-  "main": "index.js",
+  "main": "bin/main",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
