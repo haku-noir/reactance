@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/haku-noir/reactance/issues"
   },
-  "homepage": "https://github.com/haku-noir/reactance#readme"
+  "homepage": "https://github.com/haku-noir/reactance#readme",
+  "dependencies": {
+    "commander": "^5.0.0"
+  }
 }
