@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+'use strict'
+
+const program = require('commander');
+
+program
+  .name('reactance')
+  .version(require(`${__dirname}/package.json`).version, '-v, --version')
+  .parse(process.argv);
+
+require(".")();
