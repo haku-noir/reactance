@@ -5,5 +5,16 @@ const program = require('commander');
 
 program
   .name('reactance')
-  .version(require(`${__dirname}/package.json`).version, '-v, --version')
-  .parse(process.argv);
+  .version(require(`${__dirname}/package.json`).version, '-v, --version');
+
+program
+  .command('new <app_name>')
+  .alias('n')
+  .description('create a new app of react & redux')
+  .option('-a, --author <author>', 'add author')
+  .option('-m, --minimum', 'create a minimum app of react')
+  .action((app_name, options) => {
+    require('./create-react-custom-app')(app_name, options.author, options.minimum);
+  });
+
+program.parse(process.argv);
