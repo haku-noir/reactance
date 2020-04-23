@@ -7,5 +7,3 @@ program
   .name('reactance')
   .version(require(`${__dirname}/package.json`).version, '-v, --version')
   .parse(process.argv);
-
-require(".")();
