@@ -1,0 +1,3 @@
+[submodule "create-react-custom-app"]
+	path = create-react-custom-app
+	url = https://github.com/haku-noir/create-react-custom-app.git
