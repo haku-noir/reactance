@@ -18,6 +18,15 @@ program
   });
 
 program
+  .command('reducer <reducer_name>')
+  .alias('r')
+  .description('create a new reducer of react & redux')
+  .option('-m, --minimum', 'create a minimum reducer')
+  .action((reducer_name) => {
+    require('./create-actions-reducer')(reducer_name);
+  });
+
+program
   .command('component <component_name>')
   .alias('c')
   .description('create a new component of react & redux')
