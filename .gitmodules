@@ -4,3 +4,6 @@
 [submodule "create-component-container"]
 	path = create-component-container
 	url = https://github.com/haku-noir/create-component-container.git
+[submodule "create-actions-reducer"]
+	path = create-actions-reducer
+	url = https://github.com/haku-noir/create-actions-reducer.git
