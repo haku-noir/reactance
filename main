@@ -17,4 +17,12 @@ program
     require('./create-react-custom-app')(app_name, options.author, options.minimum);
   });
 
+program
+  .command('component <component_name>')
+  .alias('c')
+  .description('create a new component of react & redux')
+  .action((component_name) => {
+    require('./create-component-container')(component_name);
+  });
+
 program.parse(process.argv);
