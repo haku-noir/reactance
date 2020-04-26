@@ -8,8 +8,8 @@ program
   .version(require(`${__dirname}/package.json`).version, '-v, --version');
 
 program
-  .command('new <app_name>')
-  .alias('n')
+  .command('app <app_name>')
+  .alias('a')
   .description('create a new app of react & redux')
   .option('-a, --author <author>', 'add author')
   .option('-m, --minimum', 'create a minimum app of react')
