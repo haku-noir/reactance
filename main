@@ -22,8 +22,8 @@ program
   .alias('r')
   .description('create a new reducer of react & redux')
   .option('-m, --minimum', 'create a minimum reducer')
-  .action((reducer_name) => {
-    require('./create-actions-reducer')(reducer_name);
+  .action((reducer_name, options) => {
+    require('./create-actions-reducer')(reducer_name, options.minimum);
   });
 
 program
