@@ -10,9 +10,9 @@ program
 program
   .command('app <app_name>')
   .alias('a')
-  .description('create a new app of react & redux')
-  .option('-a, --author <author>', 'add author')
-  .option('-m, --minimum', 'create a minimum app of react')
+  .description('create a app of React & Redux')
+  .option('-a, --author <author>', 'set author')
+  .option('-m, --minimum', 'only React without Redux')
   .action((app_name, options) => {
     require('./create-react-custom-app')(app_name, options.author, options.minimum);
   });
@@ -20,8 +20,8 @@ program
 program
   .command('reducer <reducer_name>')
   .alias('r')
-  .description('create a new reducer of react & redux')
-  .option('-m, --minimum', 'create a minimum reducer')
+  .description('create a Redux reducer & a Redux actions')
+  .option('-m, --minimum', 'without sample')
   .action((reducer_name, options) => {
     require('./create-actions-reducer')(reducer_name, options.minimum);
   });
@@ -29,7 +29,7 @@ program
 program
   .command('component <component_name>')
   .alias('c')
-  .description('create a new component of react & redux')
+  .description('create a React component & a Redux container')
   .action((component_name) => {
     require('./create-component-container')(component_name);
   });
