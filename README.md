@@ -44,6 +44,20 @@ npm start
 $ cd sample/
 $ npm start
 ```
+### Build&Run
+```
+npm run build && npm start
+```
+### ESLint
+```
+npm run lint
+npm run lint:fix
+```
+### Maintenance
+```
+npm run clean
+npm run upgrade
+```
 ### Directory structure
 ```
 sample/
@@ -62,6 +76,67 @@ sample/
 │   └── store.ts
 ├── tsconfig.json
 └── webpack.config.js
+```
+#### index.html
+```html
+<!DOCTYPE html>
+<html lang="ja">
+    <meta charset="UTF-8">
+    <title></title>
+</html>
+<body>
+    <div id="root"></div>
+</body>
+```
+#### index.tsx
+```
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import { History, createBrowserHistory } from 'history';
+import { createStore } from 'store';
+
+const history :History = createBrowserHistory();
+const store = createStore(history);
+
+ReactDOM.render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <div>Hello World</div>
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('root'),
+);
+```
+#### store.ts
+```
+import {
+  createStore as reduxCreateStore, combineReducers, compose, applyMiddleware,
+} from 'redux';
+import { connectRouter, routerMiddleware, RouterState } from 'connected-react-router';
+import { History } from 'history';
+import logger from 'redux-logger';
+
+export type RootState = {
+  router: RouterState,
+};
+
+export const createStore = (history: History) => {
+  const rootReducer = combineReducers<RootState>({
+    router: connectRouter(history),
+  });
+
+  return reduxCreateStore(
+    rootReducer,
+    compose(
+      applyMiddleware(
+        routerMiddleware(history),
+        logger,
+      ),
+    ),
+  );
+}
 ```
 ### help
 ```
