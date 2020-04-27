@@ -75,3 +75,62 @@ Options:
   -m, --minimum          only React without Redux
   -h, --help             display help for command
 ```
+
+## reactance reducer  :Create a reducer & a actions
+```
+reactance reducer sample
+```
+### Directory structure
+```
+sample/
+├── ...
+├── src
+│   ├── actions
+│   │   └── sampleActions.ts
+│   ├── index.html
+│   ├── index.tsx
+│   ├── reducers
+│   │   └── sampleReducer.ts
+│   └── store.ts
+└── ...
+```
+#### sampleActions.ts
+```typescript
+import actionCreatorFactory from 'typescript-fsa';
+
+const actionCreator = actionCreatorFactory();
+
+export const sampleActions = {
+  sampleAction: actionCreator<any>('SAMPLE'),
+};
+```
+#### sampleReducer.ts
+```typescript
+import { reducerWithInitialState } from 'typescript-fsa-reducers';
+import { sampleActions } from 'actions/sampleActions';
+
+export type SampleState = {
+  sample: any
+};
+
+const initialState: SampleState = {
+  sample: Object,
+};
+
+export const sampleReducer = reducerWithInitialState(initialState)
+  .case(sampleActions.sampleAction, (state: SampleState, payload: any): SampleState => ({
+    ...state,
+    sample: payload,
+  }));
+```
+### help
+```
+$ reactance help reducer
+Usage: reactance reducer|r [options] <reducer_name>
+
+create a Redux reducer & a Redux actions
+
+Options:
+  -m, --minimum  without sample
+  -h, --help     display help for command
+```
