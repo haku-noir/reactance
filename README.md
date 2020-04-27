@@ -134,3 +134,61 @@ Options:
   -m, --minimum  without sample
   -h, --help     display help for command
 ```
+
+## reactance component  :Create a component & a container
+```
+$ reactance component sample
+```
+### Directory structure
+```
+sample/
+├── ...
+├── src
+│   ├── components
+│   │   └── Sample.tsx
+│   ├── containers
+│   │   └── Sample.ts
+│   ├── index.html
+│   ├── index.tsx
+│   └── store.ts
+└── ...
+```
+#### Sample.tsx
+```typescript
+import * as React from 'react';
+
+export type SampleStateAsProps = {};
+
+export type SampleDispatchAsProps = {};
+
+type IProps = SampleStateAsProps & SampleDispatchAsProps;
+
+export const Sample: React.FC<IProps> = (props: IProps) => {
+  return (
+    <div></div>
+  );
+};
+```
+#### Sample.ts
+```typescript
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { RootState } from 'store';
+import { Sample, SampleStateAsProps, SampleDispatchAsProps } from 'components/Sample';
+
+const mapStateToProps = (rootState: RootState): SampleStateAsProps => ({});
+
+const mapDispatchToProps = (dispatch: Dispatch): SampleDispatchAsProps => ({});
+
+export const connectedSample = connect(mapStateToProps, mapDispatchToProps)(Sample);
+```
+### help
+```
+$ reactance help component
+Usage: reactance component|c [options] <component_name>
+
+create a React component & a Redux container
+
+Options:
+  -h, --help  display help for command
+```
