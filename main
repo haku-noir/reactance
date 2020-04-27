@@ -10,7 +10,7 @@ program
 program
   .command('app <app_name>')
   .alias('a')
-  .description('create a app of React & Redux')
+  .description('create an app template of React & Redux')
   .option('-a, --author <author>', 'set author')
   .option('-m, --minimum', 'only React without Redux')
   .action((app_name, options) => {
