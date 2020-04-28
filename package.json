@@ -1,8 +1,16 @@
 {
   "name": "reactance",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A CLI for React &amp; Redux to simplify the creation of components, reducers and app templates",
-  "keywords": ["react", "redux", "create", "reducer", "action", "component", "container"],
+  "keywords": [
+    "react",
+    "redux",
+    "create",
+    "reducer",
+    "action",
+    "component",
+    "container"
+  ],
   "bin": {
     "reactance": "main"
   },
@@ -20,6 +28,9 @@
   },
   "homepage": "https://github.com/haku-noir/reactance#readme",
   "dependencies": {
-    "commander": "^5.0.0"
+    "child_process": "^1.0.2",
+    "commander": "^5.0.0",
+    "fs-extra": "^9.0.0",
+    "util": "^0.12.2"
   }
 }
