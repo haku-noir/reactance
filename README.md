@@ -265,5 +265,6 @@ Usage: reactance component|c [options] <component_name>
 create a React component & a Redux container
 
 Options:
+  -m, --minimum  only a React component without a Redux container
   -h, --help  display help for command
 ```
