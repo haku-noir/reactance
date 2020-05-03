@@ -30,8 +30,9 @@ program
   .command('component <component_name>')
   .alias('c')
   .description('create a React component & a Redux container')
-  .action((component_name) => {
-    require('./create-component-container')(component_name);
+  .option('-m, --minimum', 'only a React component without a Redux container')
+  .action((component_name, options) => {
+    require('./create-component-container')(component_name, options.minimum);
   });
 
 program.parse(process.argv);
