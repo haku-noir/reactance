@@ -7,3 +7,6 @@
 [submodule "create-actions-reducer"]
 	path = create-actions-reducer
 	url = https://github.com/haku-noir/create-actions-reducer.git
+[submodule "create-api-component"]
+	path = create-api-component
+	url = https://github.com/haku-noir/create-api-component.git
