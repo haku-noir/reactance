@@ -35,4 +35,11 @@ program
     require('./create-component-container')(component_name, options.minimum);
   });
 
+program
+  .command('api <api_component_name>')
+  .description('create a React & Redux api component')
+  .action((component_name) => {
+    require('./create-api-component')(component_name);
+  });
+
 program.parse(process.argv);
