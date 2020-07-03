@@ -8,9 +8,9 @@ program
   .version(require(`${__dirname}/package.json`).version, '-v, --version');
 
 program
-  .command('app <app_name>')
-  .alias('a')
-  .description('create an app template of React & Redux')
+  .command('new <app_name>')
+  .alias('n')
+  .description('create a new app template of React & Redux')
   .option('-a, --author <author>', 'set author')
   .option('-m, --minimum', 'only React without Redux')
   .action((app_name, options) => {
