@@ -3,10 +3,11 @@ A CLI for React &amp; Redux to simplify the creation of components, reducers and
 
 # Usage
 
-"reactance" has three commands
-- reactance app
+"reactance" has 4 commands
+- reactance new
 - reactance reducer
 - reactance component
+- reactance api
 
 ```
 $ reactance --help
@@ -17,15 +18,16 @@ Options:
   -h, --help                          display help for command
 
 Commands:
-  app|a [options] <app_name>          create an app template of React & Redux
-  reducer|r [options] <reducer_name>  create a Redux reducer & a Redux actions
-  component|c <component_name>        create a React component & a Redux container
-  help [command]                      display help for command
+  new|n [options] <app_name>              create a new app template of React & Redux
+  reducer|r [options] <reducer_name>      create a Redux reducer & a Redux actions
+  component|c [options] <component_name>  create a React component & a Redux container
+  api|a <api_component_name>              create a React & Redux api component
+  help [command]                          display help for command
 ```
 
-## reactance app  :Create an app template
+## reactance new  :Create a new app template of React & Redux
 ```
-$ reactance app sample
+$ reactance new sample
 Creating sample
 
 Installing packages...
@@ -140,10 +142,10 @@ export const createStore = (history: History) => {
 ```
 ### help
 ```
-$ reactance help app
-Usage: reactance app|a [options] <app_name>
+$ reactance help new    
+Usage: reactance new|n [options] <app_name>
 
-create an app template of React & Redux
+create a new app template of React & Redux
 
 Options:
   -a, --author <author>  set author
@@ -222,7 +224,7 @@ sample/
 │   ├── components
 │   │   └── Sample.tsx
 │   ├── containers
-│   │   └── Sample.ts
+│   │   └── SampleCTR.tsx
 │   ├── index.html
 │   ├── index.tsx
 │   └── store.ts
@@ -232,11 +234,7 @@ sample/
 ```typescript
 import * as React from 'react';
 
-export type SampleStateAsProps = {};
-
-export type SampleDispatchAsProps = {};
-
-type IProps = SampleStateAsProps & SampleDispatchAsProps;
+type IProps = {};
 
 export const Sample: React.FC<IProps> = (props: IProps) => {
   return (
@@ -244,18 +242,25 @@ export const Sample: React.FC<IProps> = (props: IProps) => {
   );
 };
 ```
-#### Sample.ts
+#### SampleCTR.tsx
 ```typescript
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import * as React from 'react';
+import { Action } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { Sample } from 'components/Sample';
 import { RootState } from 'store';
-import { Sample, SampleStateAsProps, SampleDispatchAsProps } from 'components/Sample';
 
-const mapStateToProps = (rootState: RootState): SampleStateAsProps => ({});
+type IProps = {};
 
-const mapDispatchToProps = (dispatch: Dispatch): SampleDispatchAsProps => ({});
+export const SampleCTR: React.FC<IProps> = (props: IProps) => {
+  const dispatch = useDispatch<Action>();
 
-export const connectedSample = connect(mapStateToProps, mapDispatchToProps)(Sample);
+  const state = useSelector<RootState, RootState>(state => state);
+
+  const _props = {}
+
+  return <Sample {..._props}/>;
+};
 ```
 ### help
 ```
@@ -266,5 +271,51 @@ create a React component & a Redux container
 
 Options:
   -m, --minimum  only a React component without a Redux container
+  -h, --help  display help for command
+```
+
+## reactance api  :Create a React & Redux api component
+```
+$ reactance api sample
+```
+### Directory structure
+```
+sample/
+├── ...
+├── src
+│   ├── api
+│   │   └── Sample.tsx
+│   ├── index.html
+│   ├── index.tsx
+│   └── store.ts
+└── ...
+```
+#### Sample.tsx
+```typescript
+import * as React from 'react';
+import { Action } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from 'store';
+
+type IProps = {};
+
+export const SampleAPI: React.FC<IProps> = (props: IProps) => {
+  const dispatch = useDispatch<Action>();
+
+  const state = useSelector<RootState, RootState>(state => state);
+
+  React.useEffect(() => {}, [props, state]);
+
+  return null;
+};
+```
+### help
+```
+$ reactance help api      
+Usage: reactance api|a [options] <api_component_name>
+
+create a React & Redux api component
+
+Options:
   -h, --help  display help for command
 ```
