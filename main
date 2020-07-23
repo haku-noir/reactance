@@ -37,6 +37,7 @@ program
 
 program
   .command('api <api_component_name>')
+  .alias('a')
   .description('create a React & Redux api component')
   .action((component_name) => {
     require('./create-api-component')(component_name);
