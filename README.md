@@ -3,11 +3,12 @@ A CLI for React &amp; Redux to simplify the creation of components, reducers and
 
 # Usage
 
-"reactance" has 4 commands
+"reactance" has 5 commands
 - reactance new
 - reactance reducer
 - reactance component
 - reactance api
+- reactance extractor
 
 ```
 $ reactance --help
@@ -22,6 +23,7 @@ Commands:
   reducer|r [options] <reducer_name>      create a Redux reducer & a Redux actions
   component|c [options] <component_name>  create a React component & a Redux container
   api|a <api_component_name>              create a React & Redux api component
+  extractor|e <extractor_component_name>  create a React & Redux extractor component
   help [command]                          display help for command
 ```
 
@@ -164,10 +166,11 @@ sample/
 ├── src
 │   ├── actions
 │   │   └── sampleActions.ts
-│   ├── index.html
-│   ├── index.tsx
 │   ├── reducers
 │   │   └── sampleReducer.ts
+│   ├── ...
+│   ├── index.html
+│   ├── index.tsx
 │   └── store.ts
 └── ...
 ```
@@ -225,6 +228,7 @@ sample/
 │   │   └── Sample.tsx
 │   ├── containers
 │   │   └── SampleCTR.tsx
+│   ├── ...
 │   ├── index.html
 │   ├── index.tsx
 │   └── store.ts
@@ -245,21 +249,21 @@ export const Sample: React.FC<IProps> = (props: IProps) => {
 #### SampleCTR.tsx
 ```typescript
 import * as React from 'react';
-import { Action } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
-import { Sample } from 'components/Sample';
+import { Sample as SampleComp } from 'components/Sample';
 import { RootState } from 'store';
 
 type IProps = {};
 
-export const SampleCTR: React.FC<IProps> = (props: IProps) => {
-  const dispatch = useDispatch<Action>();
+export const Sample: React.FC<IProps> = (props: IProps) => {
+  const dispatch = useDispatch<Dispatch<Action>>();
 
   const state = useSelector<RootState, RootState>(state => state);
 
   const _props = {}
 
-  return <Sample {..._props}/>;
+  return <SampleComp {..._props}/>;
 };
 ```
 ### help
@@ -284,27 +288,26 @@ sample/
 ├── ...
 ├── src
 │   ├── api
-│   │   └── Sample.tsx
+│   │   └── SampleAPI.tsx
+│   ├── ...
 │   ├── index.html
 │   ├── index.tsx
 │   └── store.ts
 └── ...
 ```
-#### Sample.tsx
+#### SampleAPI.tsx
 ```typescript
 import * as React from 'react';
-import { Action } from 'redux';
+import { Dispatch, Action } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store';
 
-type IProps = {};
-
-export const SampleAPI: React.FC<IProps> = (props: IProps) => {
-  const dispatch = useDispatch<Action>();
+export const SampleAPI: React.FC<{}> = () => {
+  const dispatch = useDispatch<Dispatch<Action>>();
 
   const state = useSelector<RootState, RootState>(state => state);
 
-  React.useEffect(() => {}, [props, state]);
+  React.useEffect(() => {}, [state]);
 
   return null;
 };
@@ -315,6 +318,51 @@ $ reactance help api
 Usage: reactance api|a [options] <api_component_name>
 
 create a React & Redux api component
+
+Options:
+  -h, --help  display help for command
+```
+
+## reactance extractor  :Create a React & Redux extractor component
+```
+$ reactance extractor sample
+```
+### Directory structure
+```
+sample/
+├── ...
+├── src
+│   ├── extractor
+│   │   └── SampleExtractor.tsx
+│   ├── ...
+│   ├── index.html
+│   ├── index.tsx
+│   └── store.ts
+└── ...
+```
+#### SampleExtractor.tsx
+```typescript
+import * as React from 'react';
+import { Dispatch, Action } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from 'store';
+
+export const SampleExtractor: React.FC<{}> = () => {
+  const dispatch = useDispatch<Dispatch<Action>>();
+
+  const state = useSelector<RootState, RootState>(state => state);
+
+  React.useEffect(() => {}, [state]);
+
+  return null;
+};
+```
+### help
+```
+$ reactance help extractor       
+Usage: reactance extractor|e [options] <extractor_component_name>
+
+create a React & Redux extractor component
 
 Options:
   -h, --help  display help for command
