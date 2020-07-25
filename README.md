@@ -347,12 +347,18 @@ import { Dispatch, Action } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store';
 
+const extract = (data: RootState): RootState => {
+  return data;
+}
+
 export const SampleExtractor: React.FC<{}> = () => {
   const dispatch = useDispatch<Dispatch<Action>>();
 
-  const state = useSelector<RootState, RootState>(state => state);
+  const data = useSelector<RootState, RootState>(state => state);
 
-  React.useEffect(() => {}, [state]);
+  React.useEffect(() => {
+    const extractedData = extract(data);
+  }, [data]);
 
   return null;
 };
