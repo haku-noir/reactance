@@ -10,3 +10,6 @@
 [submodule "create-api-component"]
 	path = create-api-component
 	url = https://github.com/haku-noir/create-api-component.git
+[submodule "create-extractor-component"]
+	path = create-extractor-component
+	url = https://github.com/haku-noir/create-extractor-component.git
