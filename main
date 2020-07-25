@@ -43,4 +43,12 @@ program
     require('./create-api-component')(component_name);
   });
 
+program
+  .command('extractor <extractor_component_name>')
+  .alias('e')
+  .description('create a React & Redux extractor component')
+  .action((component_name) => {
+    require('./create-extractor-component')(component_name);
+  });
+
 program.parse(process.argv);
