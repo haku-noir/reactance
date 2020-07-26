@@ -259,7 +259,9 @@ type IProps = {};
 export const Sample: React.FC<IProps> = (props: IProps) => {
   const dispatch = useDispatch<Dispatch<Action>>();
 
-  const state = useSelector<RootState, RootState>(state => state);
+  const data = useSelector<RootState, RootState>(
+    state => state
+  );
 
   const _props = {}
 
@@ -305,9 +307,11 @@ import { RootState } from 'store';
 export const SampleAPI: React.FC<{}> = () => {
   const dispatch = useDispatch<Dispatch<Action>>();
 
-  const state = useSelector<RootState, RootState>(state => state);
+  const data = useSelector<RootState, RootState>(
+    state => state
+  );
 
-  React.useEffect(() => {}, [state]);
+  React.useEffect(() => {}, [data]);
 
   return null;
 };
@@ -347,14 +351,16 @@ import { Dispatch, Action } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'store';
 
-const extract = (data: RootState): RootState => {
-  return data;
-}
+const extract = (data: RootState): RootState => (
+  data
+);
 
 export const SampleExtractor: React.FC<{}> = () => {
   const dispatch = useDispatch<Dispatch<Action>>();
 
-  const data = useSelector<RootState, RootState>(state => state);
+  const data = useSelector<RootState, RootState>(
+    state => state
+  );
 
   React.useEffect(() => {
     const extractedData = extract(data);
